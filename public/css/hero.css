@@ -7,12 +7,14 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    padding-left: 20px; /* Voeg een marge van 20px toe aan de linkerkant */
+    padding-right: 20px; /* Voeg een marge van 20px toe aan de rechterkant */
 }
 
 .hero {
     background: url('/images/concertvervoer-bus.jpg') no-repeat center center;
-    background-size: cover;
-    width: 1077px;
+    background-size: contain; /* Zorg ervoor dat de volledige afbeelding zichtbaar is */
+    width: calc(100% - 40px); /* Houd rekening met de marges aan beide kanten */
     height: 360px;
     display: flex;
     justify-content: center;
@@ -25,16 +27,20 @@ body {
     position: relative;
 }
 
-/* .hero-content { */
-    /* max-width: 600px; */
-    /* background-color: rgba(0, 0, 0, 0.5); Maak de achtergrond van de inhoud half transparant */
-    /* padding: 20px; */
-    /* border-radius: 10px; */
-
+/* .hero-content {
+    max-width: 600px;
+    background-color: rgba(0, 0, 0, 0.5); /* Maak de achtergrond van de inhoud half transparant */
+/*    padding: 20px;
+    border-radius: 10px;
+} */
 
 .hero h1 {
     font-size: 48px;
     margin-bottom: 20px;
+}
+
+.hero .highlight {
+    color: red; /* Maak de tekst rood */
 }
 
 .hero p {
@@ -55,4 +61,40 @@ body {
 
 .hero-button:hover {
     background-color: #575757;
+}
+
+.content {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content table th, .content table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.content table th {
+    background-color: #f2f2f2;
+}
+
+.content table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.content table tr:hover {
+    background-color: #f1f1f1;
 }

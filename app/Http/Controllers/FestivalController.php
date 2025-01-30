@@ -1,3 +1,17 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Festival;
+use Illuminate\Http\Request;
+
+class FestivalController extends Controller
+{
+    public function index()
+    {
+        $festivals = Festival::all();
+        return view('festivals.index', compact('festivals'));
+    }
 
     public function edit(Festival $festival)
     {
@@ -17,9 +31,4 @@
         $festival->update($request->all());
         return redirect()->route('festivals.index');
     }
-
-    public function destroy(Festival $festival)
-    {
-        $festival->delete();
-        return redirect()->route('festivals.index');
-    }
+}
