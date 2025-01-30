@@ -30,7 +30,7 @@ Volg deze stappen om het project lokaal op te zetten:
 
 1. **Clone de repository:**
     ```sh
-    git clone https://github.com/your-username/Festival-Travel-System.git
+    git clone https://github.com/Baraqqq/Festival-Travel-System.git
     cd Festival-Travel-System
     ```
 
