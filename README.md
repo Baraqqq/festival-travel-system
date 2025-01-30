@@ -1,60 +1,128 @@
+# Festival Travel System
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
+## Over het Project
 
-## About Laravel
+Festival Travel System is een webapplicatie die gebruikers in staat stelt om festivals te ontdekken, reizen te plannen en boekingen te maken. Het systeem biedt functionaliteiten voor verschillende gebruikersrollen, waaronder admin, planner en gewone gebruikers.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Functionaliteiten
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Gebruikersfunctionaliteiten:
+- Registreren en inloggen.
+- Festivals bekijken.
+- Bussen bekijken.
+- Boekingen maken.
+- Boekingen bekijken.
+- Punten bekijken.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Plannerfunctionaliteiten:
+- Festivals toevoegen.
+- Bussen toevoegen.
 
-## Learning Laravel
+### Adminfunctionaliteiten:
+- Gebruikers beheren.
+- Alle plannerfunctionaliteiten.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installatie
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Volg deze stappen om het project lokaal op te zetten:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clone de repository:**
+    ```sh
+    git clone https://github.com/your-username/Festival-Travel-System.git
+    cd Festival-Travel-System
+    ```
 
-## Laravel Sponsors
+2. **Installeer de afhankelijkheden:**
+    ```sh
+    composer install
+    npm install
+    npm run dev
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Kopieer het [.env](http://_vscodecontentref_/1) bestand en configureer de database:**
+    ```sh
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-### Premium Partners
+4. **Voer de migraties uit:**
+    ```sh
+    php artisan migrate
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+5. **Start de ontwikkelingsserver:**
+    ```sh
+    php artisan serve
+    ```
 
-## Contributing
+## Database Schema
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Hier is een overzicht van de database tabellen en hun relaties:
 
-## Code of Conduct
+### Users Table
+- **id:** INT, Primary Key, Auto Increment
+- **name:** VARCHAR(255), Not Null
+- **email:** VARCHAR(255), Unique, Not Null
+- **password:** VARCHAR(255), Not Null
+- **role:** ENUM('admin', 'planner', 'user'), Not Null
+- **created_at:** TIMESTAMP, Default CURRENT_TIMESTAMP
+- **updated_at:** TIMESTAMP, Default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Festivals Table
+- **id:** INT, Primary Key, Auto Increment
+- **naam:** VARCHAR(255), Not Null
+- **genre:** VARCHAR(255), Not Null
+- **datum:** DATE, Not Null
+- **locatie:** VARCHAR(255), Not Null
+- **beschrijving:** TEXT, Nullable
+- **created_at:** TIMESTAMP, Default CURRENT_TIMESTAMP
+- **updated_at:** TIMESTAMP, Default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
-## Security Vulnerabilities
+### Buses Table
+- **id:** INT, Primary Key, Auto Increment
+- **naam:** VARCHAR(255), Not Null
+- **capaciteit:** INT, Not Null
+- **created_at:** TIMESTAMP, Default CURRENT_TIMESTAMP
+- **updated_at:** TIMESTAMP, Default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Bookings Table
+- **id:** INT, Primary Key, Auto Increment
+- **user_id:** INT, Foreign Key to Users(id), Not Null
+- **festival_id:** INT, Foreign Key to Festivals(id), Not Null
+- **bus_id:** INT, Foreign Key to Buses(id), Not Null
+- **created_at:** TIMESTAMP, Default CURRENT_TIMESTAMP
+- **updated_at:** TIMESTAMP, Default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
-## License
+### Points Table
+- **id:** INT, Primary Key, Auto Increment
+- **user_id:** INT, Foreign Key to Users(id), Not Null
+- **points:** INT, Not Null
+- **created_at:** TIMESTAMP, Default CURRENT_TIMESTAMP
+- **updated_at:** TIMESTAMP, Default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Testing
+
+### Unit Testing:
+- PHPUnit voor het testen van individuele functies en methoden.
+
+### Integration Testing:
+- Testen van de interactie tussen verschillende modules en systemen.
+
+### User Acceptance Testing (UAT):
+- Testen door eindgebruikers om te verifiëren dat het systeem voldoet aan de vereisten.
+
+## Contributie
+
+Contributies zijn welkom! Volg deze stappen om bij te dragen:
+
+1. Fork de repository.
+2. Maak een nieuwe branch (`git checkout -b feature/naam-van-feature`).
+3. Commit je wijzigingen (`git commit -am 'Voeg nieuwe feature toe'`).
+4. Push naar de branch (`git push origin feature/naam-van-feature`).
+5. Open een Pull Request.
+
+## Licentie
+
+Dit project is gelicentieerd onder de MIT-licentie. Zie het LICENSE bestand voor meer informatie.
