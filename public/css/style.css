@@ -1,0 +1,57 @@
+/* Algemene styling */
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap');
+
+body {
+    font-family: 'Lexend Giga', sans-serif; /* Pas de font toe op de gehele webpagina */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding: 50px; /* Voeg een marge van 20px toe aan de linkerkant */
+}
+
+.hero {
+    background: url('/images/concertvervoer-bus.jpg') no-repeat center center;
+    background-size: contain; /* Zorg ervoor dat de volledige afbeelding zichtbaar is */
+    width: calc(100% - 40px); /* Houd rekening met de marges aan beide kanten */
+    height: 360px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    margin: 0 auto; /* Center de hero sectie horizontaal */
+    border-radius: 10px; /* Optioneel: voeg afgeronde hoeken toe */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optioneel: voeg een schaduw toe */
+    position: relative;
+}
+
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero .highlight {
+    color: red; /* Maak de tekst rood */
+}
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: #575757;
+}

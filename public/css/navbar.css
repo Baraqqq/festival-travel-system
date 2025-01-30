@@ -1,0 +1,148 @@
+/* Navbar styling */
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap');
+
+.navbar {
+    background-color: transparent; /* Maak de achtergrond van de navbar transparant */
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-family: 'Lexend Giga', sans-serif;
+}
+
+.navbar-brand a {
+    color: #000;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-logo {
+    height: 40px; /* Pas de hoogte van het logo aan */
+    width: auto;
+}
+
+.navbar-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav li {
+    margin-left: 20px;
+    position: relative;
+}
+
+.navbar-nav a {
+    color: #000; /* Maak de tekst zwart */
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+.navbar-nav a:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #000; /* Maak de onderlijn zwart */
+    transition: width 0.35s ease;
+}
+
+.navbar-nav a:hover:before,
+.navbar-nav .current a:before {
+    width: 100%;
+}
+
+.navbar-nav .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #000; /* Maak de achtergrond van de dropdown zwart */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 200px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.navbar-nav .dropdown-menu li {
+    margin: 0;
+}
+
+.navbar-nav .dropdown-menu a {
+    color: #fff; /* Maak de tekst wit */
+    padding: 10px 15px;
+    display: block;
+    white-space: nowrap;
+}
+
+.navbar-nav .dropdown-menu a:hover {
+    background-color: #575757; /* Maak de achtergrond grijs bij hover */
+}
+
+.navbar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar-nav form {
+    display: inline;
+}
+
+.navbar-nav button {
+    background: none;
+    border: none;
+    color: #000; /* Maak de tekst zwart */
+    cursor: pointer;
+    padding: 10px 15px;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+.navbar-nav button:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #000; /* Maak de onderlijn zwart */
+    transition: width 0.35s ease;
+}
+
+.navbar-nav button:hover:before,
+.navbar-nav .current button:before {
+    width: 100%;
+}
+
+/* Specifieke styling voor de Register knop */
+.navbar-nav .register-button {
+    border: 2px solid #000; /* Maak de rand zwart */
+    border-radius: 5px;
+    padding: 8px 15px;
+    background-color: #000; /* Maak de achtergrond zwart */
+    color: #fff; /* Maak de tekst wit */
+    transition: all 0.35s ease;
+    position: relative;
+}
+
+.navbar-nav .register-button:hover {
+    border-color: #000; /* Maak de rand zwart bij hover */
+    color: #000; /* Maak de tekst zwart bij hover */
+    background-color: #fff; /* Maak de achtergrond wit bij hover */
+}
+
+.navbar-nav .register-button:before,
+.navbar-nav .register-button:after {
+    content: none; /* Verwijder de pseudo-elementen */
+}
