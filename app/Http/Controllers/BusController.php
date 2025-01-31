@@ -1,22 +1,21 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Bus;
-use App\Models\Festival;
 use Illuminate\Http\Request;
 
 class BusController extends Controller
 {
     public function index()
     {
-        $buses = Bus::all();
+        $buses = Bus::with('festival')->get();
         return view('buses.index', compact('buses'));
     }
 
     public function create()
     {
-        $festivals = Festival::all();
-        return view('buses.create', compact('festivals'));
+        return view('buses.create');
     }
 
     public function store(Request $request)
@@ -24,14 +23,13 @@ class BusController extends Controller
         $request->validate([
             'festival_id' => 'required|exists:festivals,id',
             'capaciteit' => 'required|integer',
-            'status' => 'required|string',
-            'breng_tijd' => 'required',
-            'ophaal_tijd' => 'required',
+            'status' => 'required',
+            'breng_tijd' => 'required|date_format:Y-m-d H:i:s',
+            'ophaal_tijd' => 'required|date_format:Y-m-d H:i:s',
             'ophaal_punt' => 'required|string',
         ]);
 
         Bus::create($request->all());
-
         return redirect()->route('buses.index');
     }
 
@@ -42,8 +40,7 @@ class BusController extends Controller
 
     public function edit(Bus $bus)
     {
-        $festivals = Festival::all();
-        return view('buses.edit', compact('bus', 'festivals'));
+        return view('buses.edit', compact('bus'));
     }
 
     public function update(Request $request, Bus $bus)
@@ -51,9 +48,9 @@ class BusController extends Controller
         $request->validate([
             'festival_id' => 'required|exists:festivals,id',
             'capaciteit' => 'required|integer',
-            'status' => 'required|string',
-            'breng_tijd' => 'required',
-            'ophaal_tijd' => 'required',
+            'status' => 'required',
+            'breng_tijd' => 'required|date_format:Y-m-d H:i:s',
+            'ophaal_tijd' => 'required|date_format:Y-m-d H:i:s',
             'ophaal_punt' => 'required|string',
         ]);
 

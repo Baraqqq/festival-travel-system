@@ -1,7 +1,9 @@
+
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <section class="content">
         <h2>Bussen</h2>
         @auth
@@ -17,6 +19,7 @@
                     <th>Status</th>
                     <th>Breng Tijd</th>
                     <th>Ophaal Tijd</th>
+                    <th>Ophaal Punt</th>
                     <th>Acties</th>
                 </tr>
             </thead>
@@ -28,6 +31,7 @@
                         <td>{{ $bus->status }}</td>
                         <td>{{ $bus->breng_tijd }}</td>
                         <td>{{ $bus->ophaal_tijd }}</td>
+                        <td>{{ $bus->ophaal_punt }}</td>
                         <td>
                             <a href="{{ route('buses.show', $bus) }}">Bekijk</a>
                             @auth
