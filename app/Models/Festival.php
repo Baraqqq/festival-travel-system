@@ -9,7 +9,11 @@ class Festival extends Model
     use HasFactory;
 
     protected $fillable = [
-        'naam', 'locatie', 'genre', 'datum', 'beschrijving'
+        'naam',
+        'locatie',
+        'genre',
+        'datum',
+        'beschrijving',
     ];
 
     public function buses()

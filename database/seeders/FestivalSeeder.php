@@ -19,7 +19,9 @@ class FestivalSeeder extends Seeder
             'genre' => 'Afro-pop',
             'datum' => '2025-05-14',
             'locatie' => 'Locatie 1',
+            'image' => url('/images/festival.jpg'), // Voeg een afbeelding toe
             'beschrijving' => 'Geen actie'
+            
         ]);
 
         Festival::create([
@@ -27,6 +29,7 @@ class FestivalSeeder extends Seeder
             'genre' => 'Hiphop',
             'datum' => '2025-10-12',
             'locatie' => 'Locatie 2',
+            'image' => 'rock-festival.jpg', // Voeg een afbeelding toe
             'beschrijving' => 'VIP korting'
         ]);
 
@@ -35,6 +38,7 @@ class FestivalSeeder extends Seeder
             'genre' => 'Hiphop',
             'datum' => '2025-06-10',
             'locatie' => 'Locatie 3',
+            'image' => 'rock-festival.jpg', // Voeg een afbeelding toe
             'beschrijving' => 'Geen actie'
         ]);
     }

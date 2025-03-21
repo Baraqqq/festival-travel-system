@@ -1,31 +1,32 @@
+
 @extends('layouts.app')
 
 @section('content')
-    <section class="content">
-        <h2>Festival Toevoegen</h2>
-        <form action="{{ route('festivals.store') }}" method="POST">
-            @csrf
-            <div>
-                <label for="naam">Naam:</label>
-                <input type="text" id="naam" name="naam" required>
-            </div>
-            <div>
-                <label for="locatie">Locatie:</label>
-                <input type="text" id="locatie" name="locatie" required>
-            </div>
-            <div>
-                <label for="genre">Genre:</label>
-                <input type="text" id="genre" name="genre" required>
-            </div>
-            <div>
-                <label for="datum">Datum:</label>
-                <input type="date" id="datum" name="datum" required>
-            </div>
-            <div>
-                <label for="beschrijving">Beschrijving:</label>
-                <textarea id="beschrijving" name="beschrijving"></textarea>
-            </div>
-            <button type="submit">Opslaan</button>
-        </form>
-    </section>
+<div class="container">
+    <h1>Nieuw Festival Aanmaken</h1>
+    <form action="{{ route('test.festivals.store') }}" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="naam" class="form-label">Naam</label>
+            <input type="text" class="form-control" id="naam" name="naam" required>
+        </div>
+        <div class="mb-3">
+            <label for="locatie" class="form-label">Locatie</label>
+            <input type="text" class="form-control" id="locatie" name="locatie" required>
+        </div>
+        <div class="mb-3">
+            <label for="genre" class="form-label">Genre</label>
+            <input type="text" class="form-control" id="genre" name="genre" required>
+        </div>
+        <div class="mb-3">
+            <label for="datum" class="form-label">Datum</label>
+            <input type="date" class="form-control" id="datum" name="datum" required>
+        </div>
+        <div class="mb-3">
+            <label for="beschrijving" class="form-label">Beschrijving</label>
+            <textarea class="form-control" id="beschrijving" name="beschrijving" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Opslaan</button>
+    </form>
+</div>
 @endsection

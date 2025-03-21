@@ -10,27 +10,22 @@
         </div>
     </section>
     <section class="content">
-        <h2>Beschikbare Festivals</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Naam</th>
-                    <th>Genre</th>
-                    <th>Datum</th>
-                    <th>Actie</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($festivals as $festival)
-                    <tr>
-                        <td>{{ $festival->naam }}</td>
-                        <td>{{ $festival->genre }}</td>
-                        <td>{{ $festival->datum }}</td>
-                        <td>
-                            <a href="{{ route('festivals.show', $festival) }}">Bekijk</a>
-                        </td>
-                    </tr>
-                @endforeach
+    <h2 class="text-center mb-5">Beschikbare Festivals</h2>
+    <div class="row">
+        @foreach ($festivals as $festival)
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ asset('storage/images/' . $festival->image) }}" class="card-img-top" alt="{{ $festival->naam }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $festival->naam }}</h5>
+                        <p class="card-text">Genre: {{ $festival->genre }}</p>
+                        <p class="card-text">Datum: {{ $festival->datum }}</p>
+                        <p class="card-text">{{ Str::limit($festival->beschrijving, 100) }}</p>
+                        <a href="{{ route('festivals.show', $festival) }}" class="btn btn-primary">Bekijk</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
             </tbody>
         </table>
     </section>

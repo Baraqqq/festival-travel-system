@@ -15,7 +15,7 @@ class FestivalController extends Controller
 
     public function create()
     {
-        return view('festivals.create');
+        return view('festivals.create'); // Zorg ervoor dat deze view bestaat
     }
 
     public function store(Request $request)
@@ -28,8 +28,12 @@ class FestivalController extends Controller
             'beschrijving' => 'nullable',
         ]);
 
+    try {
         Festival::create($request->all());
-        return redirect()->route('festivals.index');
+        return redirect()->route('festivals.index')->with('success', 'Festival succesvol aangemaakt!');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Er is een fout opgetreden: ' . $e->getMessage());
+    }
     }
 
     public function show(Festival $festival)
