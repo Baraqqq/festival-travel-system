@@ -123,3 +123,20 @@ body {
     font-size: 14px;
     margin-bottom: 10px;
 }
+
+@media (max-width: 768px) {
+    .max-w-7xl {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .flex.space-x-4 {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .flex.space-x-4 a {
+        width: 100%;
+        justify-content: center;
+    }
+}

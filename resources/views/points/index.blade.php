@@ -1,27 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Mijn Punten</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Aantal</th>
-                <th>Acties</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($points as $point)
-                <tr>
-                    <td>{{ $point->amount }}</td>
-                    <td>
-                        <form action="{{ route('points.destroy', $point) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Verwijderen</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="container py-12">
+        <h1>Mijn Festivalmuntjes</h1>
+        
+        <div class="card my-4 p-4 shadow">
+            <h2>Totaal Aantal Muntjes</h2>
+            <p>Je hebt {{ $points->amount ?? 0 }} muntjes</p>
+        </div>
+        
+        <div class="card my-4 p-4 shadow">
+            <h2>Hoe Ik Muntjes Heb Verdiend</h2>
+            @if($bookings->isEmpty())
+                <p>Je hebt nog geen busreizen geboekt en daarmee nog geen muntjes verdiend.</p>
+            @else
+                <ul>
+                    @foreach($bookings as $booking)
+                        <li>{{ $booking->bus->festival->naam }} - {{ $booking->created_at->format('d-m-Y') }} - +5 muntjes</li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
+        
+        <div class="mt-4">
+            <a href="{{ route('dashboard') }}" class="btn btn-secondary">Terug naar Dashboard</a>
+        </div>
+    </div>
 @endsection

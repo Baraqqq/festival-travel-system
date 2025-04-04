@@ -10,6 +10,12 @@
                 @endif
     @endauth
 
+    <!-- @if(Auth::check())
+    <p>Ingelogd als: {{ Auth::user()->name }}, Rol: {{ Auth::user()->role }}</p>
+@else
+    <p>Niet ingelogd</p>
+@endif -->
+
     <div class="row">
         @foreach ($festivals as $festival)
             <div class="col-md-4 mb-4">

@@ -8,25 +8,22 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckRole
 {
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, $roles)
     {
-        dd([
-            'is_logged_in' => Auth::check(),
-            'user' => $request->user(),
-            'required_role' => $role,
-        ]);
-    
-    
         // Controleer of de gebruiker is ingelogd
         if (!Auth::check()) {
-            return redirect('login'); // Stuur naar loginpagina als niet ingelogd
+            return redirect('login');
         }
-
-        // Controleer of de gebruiker de juiste rol heeft
-        if ($request->user()->role !== $role) {
-            abort(403, 'Unauthorized action.');
+        
+        // Split de rollen op basis van de pipe-operator
+        $allowedRoles = explode('|', $roles);
+        
+        // Controleer of de gebruiker een van de toegestane rollen heeft
+        if (in_array($request->user()->role, $allowedRoles)) {
+            return $next($request);
         }
-
-        return $next($request);
+        
+        // Gebruiker heeft niet de juiste rol
+        abort(403, 'Unauthorized action.');
     }
 }

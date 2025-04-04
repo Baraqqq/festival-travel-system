@@ -1,6 +1,10 @@
 
 @extends('layouts.app')
-
+<!-- @if(Auth::check())
+    <p>Ingelogd als: {{ Auth::user()->name }}, Rol: {{ Auth::user()->role }}</p>
+@else
+    <p>Niet ingelogd</p>
+@endif -->
 @section('content')
 <div class="container">
     <h1>Nieuw Festival Aanmaken</h1>

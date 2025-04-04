@@ -10,7 +10,18 @@ class Bus extends Model
     use HasFactory;
 
     protected $fillable = [
-        'festival_id', 'capaciteit', 'status', 'breng_tijd', 'ophaal_tijd', 'ophaal_punt'
+        'festival_id',
+        'capaciteit',
+        'status',
+        'breng_tijd',
+        'ophaal_tijd',
+        'ophaal_punt',
+    ];
+
+    // Voeg deze regel toe om datumvelden automatisch naar Carbon objecten te converteren
+    protected $casts = [
+        'breng_tijd' => 'datetime',
+        'ophaal_tijd' => 'datetime',
     ];
 
     public function festival()

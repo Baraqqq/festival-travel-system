@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Festival Travel System') }}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 </head>
@@ -19,20 +20,9 @@
                 <li><a href="{{ route('festivals.index') }}" data-hover="Festivals">Festivals</a></li>
                 <li><a href="{{ route('buses.index') }}" data-hover="Bussen">Bussen</a></li>
                 @auth
-                    <li class="dropdown">
-                        <a href="{{ route('dashboard') }}" class="dropdown-toggle" data-hover="Dashboard">Dashboard</a>
-                        <ul class="dropdown-menu">
-                            @if(auth()->user()->role === 'planner' || auth()->user()->role === 'admin')
-                                <li><a href="{{ route('festivals.create') }}" data-hover="Add Festival">Add Festival</a></li>
-                                <li><a href="{{ route('buses.create') }}" data-hover="Add Bus">Add Bus</a></li>
-                                @if(auth()->user()->role === 'admin')
-                                    <li><a href="{{ route('users.index') }}" data-hover="Gebruikers">Gebruikers</a></li>
-                                @endif
-                            @endif
-                            <li><a href="{{ route('bookings.index') }}" data-hover="Boekingen">Boekingen</a></li>
-                            <li><a href="{{ route('points.index') }}" data-hover="Punten">Punten</a></li>
-                        </ul>
-                    </li>
+                <li><a href="{{ route('dashboard') }}" data-hover="Dashboard">Dashboard</a></li>
+                <li><a href="{{ route('bookings.index') }}" data-hover="Boekingen">Boekingen</a></li>
+                <li><a href="{{ route('points.index') }}" data-hover="Punten">Punten</a></li>
                 @endauth
             </ul>
             <ul class="navbar-nav navbar-nav-right">
@@ -55,3 +45,25 @@
     </div>
 </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdowns = document.querySelectorAll('.dropdown');
+        
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                menu.classList.toggle('show');
+            });
+            
+            // Close the dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target)) {
+                    menu.classList.remove('show');
+                }
+            });
+        });
+    });
+</script>

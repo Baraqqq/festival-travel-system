@@ -29,11 +29,16 @@
                         <td>{{ $bus->ophaal_tijd }}</td>
                         <td>{{ $bus->ophaal_punt }}</td>
                         <td>
-                            @guest
+                        @auth
+                            <a href="{{ route('bookings.create', ['bus_id' => $bus->id]) }}" class="btn btn-primary">Boek Deze Bus</a>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-primary">Log in om te boeken</a>
+                        @endauth
+                            <!-- @guest
                                 <a href="{{ route('login') }}">Meld je aan</a>
                             @else
                                 <a href="{{ route('bookings.create', ['bus_id' => $bus->id]) }}">Boek</a>
-                            @endguest
+                            @endguest -->
                         </td>
                     </tr>
                 @endforeach

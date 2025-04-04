@@ -7,10 +7,12 @@
         <div>
             <label for="festival_id">Festival</label>
             <select name="festival_id" id="festival_id" required>
-                @foreach($festivals as $festival)
-                    <option value="{{ $festival->id }}">{{ $festival->naam }}</option>
-                @endforeach
-            </select>
+    @forelse($festivals as $festival)
+        <option value="{{ $festival->id }}">{{ $festival->naam }}</option>
+    @empty
+        <option value="">Geen festivals beschikbaar</option>
+    @endforelse
+</select>
         </div>
         <div>
             <label for="capaciteit">Capaciteit</label>
@@ -22,11 +24,15 @@
         </div>
         <div>
             <label for="breng_tijd">Breng Tijd</label>
-            <input type="time" name="breng_tijd" id="breng_tijd" required>
+            <!-- <input type="time" name="breng_tijd" id="breng_tijd" required> -->
+            <input type="datetime-local" name="breng_tijd" class="form-control">
+
         </div>
         <div>
             <label for="ophaal_tijd">Ophaal Tijd</label>
-            <input type="time" name="ophaal_tijd" id="ophaal_tijd" required>
+            <!-- <input type="time" name="ophaal_tijd" id="ophaal_tijd" required> -->
+            <input type="datetime-local" name="ophaal_tijd" class="form-control">
+
         </div>
         <div>
             <label for="ophaal_punt">Ophaal Punt</label>
@@ -34,4 +40,13 @@
         </div>
         <button type="submit">Opslaan</button>
     </form>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @endsection

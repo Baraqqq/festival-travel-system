@@ -1,17 +1,28 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+@section('content')
+    <div class="container py-12">
+        <h1>Dashboard</h1>
+        <p>Welkom {{ Auth::user()->name }}!</p>
+        
+        <div class="card my-4 p-4 shadow">
+            <h2>Mijn Festivalmuntjes</h2>
+            <p>Je hebt {{ $points->amount ?? 0 }} muntjes</p>
+            <a href="{{ route('my-points') }}" class="btn btn-primary">Bekijk Mijn Muntjes</a>
+        </div>
+        
+        <div class="card my-4 p-4 shadow">
+            <h2>Mijn Boekingen</h2>
+            @if($recentBookings->isEmpty())
+                <p>Je hebt nog geen boekingen gemaakt.</p>
+            @else
+                <ul>
+                    @foreach($recentBookings as $booking)
+                        <li>{{ $booking->bus->festival->naam }} - {{ $booking->created_at->format('d-m-Y') }}</li>
+                    @endforeach
+                </ul>
+            @endif
+            <a href="{{ route('bookings.index') }}" class="btn btn-primary">Bekijk Alle Boekingen</a>
         </div>
     </div>
-</x-app-layout>
+@endsection
